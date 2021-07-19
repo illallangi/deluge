@@ -1,0 +1,7 @@
+[template]
+src  = "auth.tmpl"
+dest = "/config/auth"
+keys = [
+    "/deluge/username",
+    "/deluge/password"
+]

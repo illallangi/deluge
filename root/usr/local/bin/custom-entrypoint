@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+export UMASK_SET=${UMASK_SET:-022}
+export PUID=${PUID:-1000}
+export PGID=${PGID:-1000}
+export DELUGE_USERNAME=${DELUGE_USERNAME:-deluge}
+export DELUGE_PASSWORD=${DELUGE_PASSWORD:-Letmein123}
+export DELUGE_DAEMON_PORT=${DELUGE_DAEMON_PORT:-58846}
+export DELUGE_LISTEN_PORT=${DELUGE_LISTEN_PORT:-6881}
+
+umask "$UMASK_SET" || exit 1
+
+if [[ $( id -u ) -eq 0 ]]; then
+
+  addgroup -g ${PGID} abc || exit 1
+  adduser -G abc -D -H -u ${PUID} abc || exit 1
+
+  mkdir -p /config /data || exit 1
+
+  find /config /data ! -group ${PGID} -exec chown -c ${PUID}.${PGID} {} \; || exit 1
+  find /config /data ! -user ${PUID} -exec chown -c ${PUID} {} \; || exit 1
+
+  find /config /data -type d ! -perm 0755 -exec chmod -c 0755 {} \; || exit 1
+  find /config /data -type f ! -perm 0644 -exec chmod -c 0644 {} \; || exit 1
+
+  gosu abc $0 $* || exit 1
+
+else
+
+  confd -onetime -backend env || exit 1
+  exec $@
+
+fi
