@@ -15,7 +15,7 @@ if [[ $( id -u ) -eq 0 ]]; then
   addgroup -g ${PGID} abc || exit 1
   adduser -G abc -D -H -u ${PUID} abc || exit 1
 
-  mkdir -p /config /data || exit 1
+  mkdir -p /config /data/downloading /data/complete /data/watch || exit 1
 
   find /config /data ! -group ${PGID} -exec chown -c ${PUID}.${PGID} {} \; || exit 1
   find /config /data ! -user ${PUID} -exec chown -c ${PUID} {} \; || exit 1

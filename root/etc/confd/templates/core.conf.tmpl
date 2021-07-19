@@ -4,7 +4,7 @@
 }{
   "add_paused": false,
   "allow_remote": true,
-    "auto_manage_prefer_seeds": false,
+  "auto_manage_prefer_seeds": false,
   "auto_managed": true,
   "autoadd_enable": true,
   "autoadd_location": "/data/watch",
@@ -19,6 +19,7 @@
   "download_location": "/data/downloading",
     "download_location_paths_list": [],
     "enabled_plugins": [
+        "AutoAdd",
         "Execute"
     ],
   "enc_in_policy": 1,
@@ -37,7 +38,7 @@
     "listen_reuse_port": true,
     "listen_use_sys_port": false,
     "lsd": false,
-    "max_active_downloading": -1,
+    "max_active_downloading": 2,
     "max_active_limit": -1,
     "max_active_seeding": -1,
     "max_connections_global": -1,
@@ -81,7 +82,7 @@
         "type": 0,
         "username": ""
     },
-    "queue_new_to_top": false,
+    "queue_new_to_top": true,
     "random_outgoing_ports": true,
     "random_port": false,
     "rate_limit_ip_overhead": true,

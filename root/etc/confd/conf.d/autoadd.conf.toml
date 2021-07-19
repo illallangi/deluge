@@ -1,0 +1,5 @@
+[template]
+src  = "autoadd.conf.tmpl"
+dest = "/config/autoadd.conf"
+keys = [
+]
