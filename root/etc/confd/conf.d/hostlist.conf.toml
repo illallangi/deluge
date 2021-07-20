@@ -1,0 +1,6 @@
+[template]
+src  = "hostlist.conf.tmpl"
+dest = "/config/hostlist.conf"
+keys = [
+    "/deluge/daemon/port"
+]

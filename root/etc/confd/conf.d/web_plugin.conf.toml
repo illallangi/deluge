@@ -1,0 +1,6 @@
+[template]
+src  = "web_plugin.conf.tmpl"
+dest = "/config/web_plugin.conf"
+keys = [
+    "/deluge/web/port"
+]
