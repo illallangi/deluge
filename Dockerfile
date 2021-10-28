@@ -5,7 +5,8 @@ ARG CONFD_VERSION=0.16.0
 
 ADD https://github.com/kelseyhightower/confd/archive/v${CONFD_VERSION}.tar.gz /tmp/
 
-RUN apk add --no-cache \
+RUN \
+  apk add --no-cache \
     bzip2 \
     make && \
   mkdir -p /go/src/github.com/kelseyhightower/confd && \
@@ -15,24 +16,64 @@ RUN apk add --no-cache \
   rm -rf /tmp/v${CONFD_VERSION}.tar.gz
 
 # main image
-FROM alpine:edge
+FROM debian:latest
 
 # install confd from builder image
 COPY --from=confd /go/bin/confd /usr/local/bin/confd
 
-# install deluge from testing repo
+# install prerequisites
 RUN \
-  echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-  apk update && \
-  apk add --upgrade apk-tools && \
-  apk add --upgrade py-pip deluge@testing gosu@testing && \
-  rm -rf /var/cache/apk/*
+  apt-get update \
+  && \
+  apt-get install -y \
+    build-essential \
+    curl \
+    gdb \
+    git \
+    gosu \
+    libboost-dev \
+    libboost-python-dev \
+    libboost-system-dev \
+    libboost-tools-dev \
+    libssl-dev \
+    musl \
+    python3 \
+    python3-dev \
+    python3-pip \
+  && \
+  apt-get clean
+
+# install libtorrent
+RUN \
+  curl \
+    --location https://github.com/arvidn/libtorrent/releases/download/v2.0.4/libtorrent-rasterbar-2.0.4.tar.gz | \
+  tar \
+    --extract \
+    --directory /usr/local/src \
+    --gzip \
+    --verbose \
+  && \
+  cd /usr/local/src/libtorrent-rasterbar-2.0.4 \
+  && \
+  python3 setup.py build_ext --b2-args="cxxstd=14 lto=on dht=on crypto=openssl debug-symbols=on" install \
+  && \
+  cd \
+  && \
+  rm -rfv /usr/local/src/libtorrent-rasterbar-2.0.4
+
+# install deluge
+RUN \
+  git clone git://deluge-torrent.org/deluge.git /usr/local/src/deluge \
+  && \
+  python3 -m pip install /usr/local/src/deluge \
+  && \
+  rm -rfv /usr/local/src/deluge
 
 # autologin to webui
 RUN \
-  sed -i 's/this.passwordField.focus(true, 300)/this.onLogin()/g' /usr/lib/python3.9/site-packages/deluge/ui/web/js/deluge-all-debug.js
+  sed -i 's/this.passwordField.focus(true, 300)/this.onLogin()/g' /usr/local/lib/python3.9/dist-packages/deluge/ui/web/js/deluge-all-debug.js
 
 # add local files
 COPY root/ /
 ENTRYPOINT ["custom-entrypoint"]
-CMD ["/usr/bin/deluged","--config","/config","--loglevel","info","--do-not-daemonize"]
+CMD ["/usr/local/bin/deluged","--config","/config","--loglevel","info","--do-not-daemonize"]
