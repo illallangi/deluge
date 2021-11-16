@@ -17,12 +17,8 @@
   "dht": false,
   "dont_count_slow_torrents": true,
   "download_location": "/data/downloading",
-    "download_location_paths_list": [],
-    "enabled_plugins": [
-        "AutoAdd",
-        "Execute",
-        "WebUi"
-    ],
+  "download_location_paths_list": [],
+  "enabled_plugins": [{{ range $i, $e := (split (getv "/deluge/enabled/plugins") ";") }}{{ if $i }},{{ end }}"{{ $e }}"{{ end }}],
   "enc_in_policy": 1,
   "enc_level": 2,
   "enc_out_policy": 1,
