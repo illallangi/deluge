@@ -1,0 +1,18 @@
+[general]
+db = /config/autotorrent.db
+ignore_files =
+store_path = /data/downloading
+add_limit_size = 1073741824
+add_limit_percent = 15
+link_type = hard
+scan_mode = normal,hash_size
+
+[disks]
+disk1 = /data/disk
+
+[client]
+client = deluge
+host = 127.0.0.1:{{getv "/deluge/daemon/port"}}
+username = {{getv "/deluge/username"}}
+password = {{getv "/deluge/password"}}
+label = autotorrent
