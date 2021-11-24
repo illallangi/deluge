@@ -1,0 +1,8 @@
+[template]
+src  = "autotorrent.conf.tmpl"
+dest = "/config/autotorrent.conf"
+keys = [
+    "/deluge/daemon/port",
+    "/deluge/username",
+    "/deluge/password"
+]

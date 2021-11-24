@@ -73,6 +73,10 @@ RUN \
 RUN \
   sed -i 's/this.passwordField.focus(true, 300)/this.onLogin()/g' /usr/local/lib/python3.9/dist-packages/deluge/ui/web/js/deluge-all-debug.js
 
+# install autotorrent
+RUN \
+  python3 -m pip install autotorrent
+
 # add local files
 COPY root/ /
 ENTRYPOINT ["custom-entrypoint"]
