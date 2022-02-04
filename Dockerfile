@@ -46,20 +46,20 @@ RUN \
 # install libtorrent
 RUN \
   curl \
-    --location https://github.com/arvidn/libtorrent/releases/download/v2.0.4/libtorrent-rasterbar-2.0.4.tar.gz | \
+    --location https://github.com/arvidn/libtorrent/releases/download/v2.0.5/libtorrent-rasterbar-2.0.5.tar.gz | \
   tar \
     --extract \
     --directory /usr/local/src \
     --gzip \
     --verbose \
   && \
-  cd /usr/local/src/libtorrent-rasterbar-2.0.4 \
+  cd /usr/local/src/libtorrent-rasterbar-2.0.5 \
   && \
   python3 setup.py build_ext --b2-args="cxxstd=14 lto=on dht=on crypto=openssl debug-symbols=on" install \
   && \
   cd \
   && \
-  rm -rfv /usr/local/src/libtorrent-rasterbar-2.0.4
+  rm -rfv /usr/local/src/libtorrent-rasterbar-2.0.5
 
 # install deluge
 RUN \
