@@ -63,7 +63,7 @@ RUN \
 
 # install deluge
 RUN \
-  git clone git://deluge-torrent.org/deluge.git /usr/local/src/deluge \
+  git clone git://deluge-torrent.org/deluge.git -b deluge-2.0.5 /usr/local/src/deluge \
   && \
   python3 -m pip install /usr/local/src/deluge \
   && \
