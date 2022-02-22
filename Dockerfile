@@ -16,7 +16,7 @@ RUN \
   rm -rf /tmp/v${CONFD_VERSION}.tar.gz
 
 # main image
-FROM debian:latest
+FROM docker.io/library/debian:buster-20220125
 
 # install confd from builder image
 COPY --from=confd /go/bin/confd /usr/local/bin/confd
