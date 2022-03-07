@@ -1,0 +1,5 @@
+[template]
+src  = "ltconfig.conf.tmpl"
+dest = "/config/ltconfig.conf"
+keys = [
+]
