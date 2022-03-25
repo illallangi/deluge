@@ -1,5 +1,5 @@
 # main image
-FROM docker.io/library/python:3.10.2
+FROM docker.io/library/python:3.10.4
 
 # install confd
 COPY --from=ghcr.io/illallangi/confd-builder:v0.0.1 /go/bin/confd /usr/local/bin/confd
