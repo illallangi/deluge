@@ -12,8 +12,8 @@ RUN \
   apt-get update \
   && \
   apt-get install -y \
-    gosu \
-    musl \
+    gosu=1.12-1+b6 \
+    musl=1.2.2-1 \
   && \
   rm -rf /var/lib/apt/lists/*
 
