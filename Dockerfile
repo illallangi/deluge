@@ -19,7 +19,7 @@ RUN \
 
 # install deluge
 RUN \
-  python3 -m pip install \
+  python3 -m pip install --no-cache-dir \
     deluge==2.0.5 \
     libtorrent==2.0.5 \
     autotorrent
