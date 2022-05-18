@@ -24,10 +24,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
   && \
   curl -L https://github.com/ratanakvlun/deluge-ltconfig/releases/download/v2.0.0/ltConfig-2.0.0.egg -o /usr/local/lib/python3.10/site-packages/deluge/plugins/ltConfig-2.0.0.egg
 
-# # autologin to webui
-# RUN \
-#   sed -i 's/this.passwordField.focus(true, 300)/this.onLogin()/g' /usr/local/lib/python3.9/dist-packages/deluge/ui/web/js/deluge-all-debug.js
-
 # add local files
 COPY root/ /
 ENTRYPOINT ["custom-entrypoint"]
