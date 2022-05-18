@@ -11,7 +11,7 @@ COPY --from=confd /go/bin/confd /usr/local/bin/confd
 RUN \
   apt-get update \
   && \
-  apt-get install -y \
+  apt-get install -y --no-install-recommends \
     gosu=1.12-1+b6 \
     musl=1.2.2-1 \
   && \
