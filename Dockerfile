@@ -22,7 +22,7 @@ RUN \
   python3 -m pip install --no-cache-dir \
     deluge==2.0.5 \
     libtorrent==2.0.5 \
-    autotorrent
+    autotorrent==1.7.1
 
 RUN \
   curl -L https://github.com/ratanakvlun/deluge-ltconfig/releases/download/v2.0.0/ltConfig-2.0.0.egg -o /usr/local/lib/python3.10/site-packages/deluge/plugins/ltConfig-2.0.0.egg
