@@ -15,7 +15,7 @@ RUN \
     gosu \
     musl \
   && \
-  apt-get clean
+  rm -rf /var/lib/apt/lists/*
 
 # install deluge
 RUN \
