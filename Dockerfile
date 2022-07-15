@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
   rm -rf /var/lib/apt/lists/* \
   && \
   python3 -m pip install --no-cache-dir \
-    deluge==2.0.5 \
+    deluge==2.1.1 \
     libtorrent==2.0.6 \
     autotorrent==1.7.1 \
   && \
