@@ -1,0 +1,4 @@
+[template]
+src  = "execute.conf.tmpl"
+dest = "/config/execute.conf"
+keys = []
