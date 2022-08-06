@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+TORRENT_ID=${1}
+TORRENT_NAME=${2}
+
+# noop by default, replace this script with your own

@@ -4,5 +4,9 @@ dest = "/config/core.conf"
 keys = [
     "/deluge/daemon/port",
     "/deluge/enabled/plugins",
-    "/deluge/listen/port"
+    "/deluge/listen/port",
+    "/deluge/queue/downloading",
+    "/deluge/queue/limit",
+    "/deluge/queue/seeding",
+    "/deluge/queue/totop"
 ]
