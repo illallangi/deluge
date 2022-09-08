@@ -55,7 +55,7 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         context: .
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
         push: false
 name: Test
 on: pull_request
