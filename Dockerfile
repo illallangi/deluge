@@ -11,10 +11,19 @@ COPY --from=confd /go/bin/confd /usr/local/bin/confd
 RUN DEBIAN_FRONTEND=noninteractive \
   apt-get update \
   && \
-  apt-get install -y --no-install-recommends \
-    gosu=1.12-1+b6 \
-    musl=1.2.2-1 \
-    tree=1.8.0-1+b1 \
+  if [ $(uname -m) = 'aarch64' ]; then \
+    apt-get install -y --no-install-recommends \
+      gosu=1.12-1+b6 \
+      musl=1.2.2-1 \
+      tree=1.8.0-1 \
+    ; fi \
+  && \
+  if [ $(uname -m) = 'x86_64' ]; then \
+    apt-get install -y --no-install-recommends \
+      gosu=1.12-1+b6 \
+      musl=1.2.2-1 \
+      tree=1.8.0-1+b1 \
+    ; fi \
   && \
   rm -rf /var/lib/apt/lists/* \
   && \
