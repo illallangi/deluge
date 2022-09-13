@@ -12,7 +12,7 @@ jobs:
         WITH_V: true
       id: version
       name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.42.0
+      uses: anothrNick/github-tag-action@1.45.0
     - id: meta
       name: Docker meta
       uses: docker/metadata-action@v4
@@ -37,7 +37,7 @@ jobs:
         cache-to: type=gha,mode=max
         context: .
         labels: ${{ steps.meta.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
     - env:
