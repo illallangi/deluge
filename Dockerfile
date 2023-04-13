@@ -1,5 +1,5 @@
 # toolbx image
-FROM ghcr.io/illallangi/toolbx:v0.0.11 as toolbx
+FROM ghcr.io/illallangi/toolbx:v0.0.12 as toolbx
 
 # main image
 FROM docker.io/library/python:3.11.2
