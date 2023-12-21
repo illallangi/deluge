@@ -2,7 +2,7 @@
 FROM ghcr.io/illallangi/toolbx:v0.0.13 as toolbx
 
 # main image
-FROM docker.io/library/python:3.10.7
+FROM docker.io/library/python:3.12.1
 
 # install confd
 COPY --from=toolbx /usr/local/bin/confd /usr/local/bin/confd
