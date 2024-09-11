@@ -1,5 +1,5 @@
 # main image
-FROM docker.io/library/python:3.10.7
+FROM docker.io/library/python:3.10.15
 
 # install prerequisites, confd, deluge and plugins
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -7,21 +7,16 @@ RUN DEBIAN_FRONTEND=noninteractive \
   && \
   if [ "$(uname -m)" = "aarch64" ]; then \
     curl https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-arm64 --location --output /usr/local/bin/confd \
-    && \
-    apt-get install -y --no-install-recommends \
-      gosu=1.12-1+b6 \
-      musl=1.2.2-1 \
-      tree=1.8.0-1 \
     ; fi \
   && \
   if [ "$(uname -m)" = "x86_64" ]; then \
     curl https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 --location --output /usr/local/bin/confd \
-    && \
-    apt-get install -y --no-install-recommends \
-      gosu=1.12-1+b6 \
-      musl=1.2.2-1 \
-      tree=1.8.0-1+b1 \
     ; fi \
+  && \
+  apt-get install -y --no-install-recommends \
+    gosu=1.14-1+b10 \
+    musl=1.2.3-1 \
+    tree=2.1.0-1 \
   && \
   rm -rf /var/lib/apt/lists/* \
   && \
