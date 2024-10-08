@@ -1,5 +1,5 @@
 # main image
-FROM docker.io/library/python:3.10.15
+FROM docker.io/library/python:3.13.0
 
 # install prerequisites, confd, deluge and plugins
 RUN DEBIAN_FRONTEND=noninteractive \
